@@ -1,0 +1,35 @@
+---
+title: "case_study"
+author: "Siqing Wang"
+date: "2023-10-10"
+output: html_document
+---
+
+```{r}
+library(p8105.datasets)
+library(tidyverse)
+data(nyc_airbnb)
+```
+
+```{r}
+nyc_airbnb = nyc_airbnb |> 
+  janitor::clean_names() |> 
+  rename(borough = neighbourhood_group) |> 
+  mutate(stars = review_scores_location/2)
+```
+
+## Brainstorm questions 
+- Where are airbnbs expensive
+  - borough? neighborhood?
+  - do other factors affect price? what about rating?
+- How long are airbnbs active?
+  - illegal? shut down?
+- which units have the most availabilities?
+- how is review score impacted by location?
+- how many apts are run by on host? 
+
+## Exploring the data 
+```{r}
+ggplot(nyc_airbnb, aes(x = borough, y = price)) + geom_point()
+```
+
